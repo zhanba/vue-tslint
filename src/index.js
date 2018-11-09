@@ -1,0 +1,1 @@
+const {lint} = require('./lint')

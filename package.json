@@ -1,0 +1,32 @@
+{
+  "name": "vue-tslint",
+  "version": "0.0.1",
+  "description": "cli tool for using tslint in vue sfc file",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanba/vue-tslint.git"
+  },
+  "keywords": [
+    "vue",
+    "tslint",
+    "typescript"
+  ],
+  "author": "zhanba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhanba/vue-tslint/issues"
+  },
+  "homepage": "https://github.com/zhanba/vue-tslint#readme",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "globby": "^8.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6",
+    "update-notifier": "^2.5.0",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
