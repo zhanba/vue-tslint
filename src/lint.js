@@ -15,7 +15,8 @@ const isVueFile = file => /\.vue(\.ts)?$/.test(file);
 
 const lint = (args = {}) => {
   const configPath = resolveFromRoot(args.config || 'tslint.json');
-  const projectPath = resolveFromRoot(args.project || 'tsconfig.json');
+  const projectPath = resolveFromRoot(args.project || '');
+  const projectConfigPath = path.resolve(projectPath, 'tsconfig.json');
 
   const defaultOptions = {
     fix: false,
@@ -63,13 +64,15 @@ const lint = (args = {}) => {
     }
   };
 
-  const program = tslint.Linter.createProgram(projectPath);
+  const program = tslint.Linter.createProgram(projectConfigPath);
+  console.log('program', program);
 
   // patch getSourceFile for *.vue files
   // so that it returns the <script> block only
   // eslint-disable-next-line no-shadow
   const patchProgram = (program) => {
-    const { getSourceFile } = program;
+    // eslint-disable-next-line prefer-destructuring
+    const getSourceFile = program.getSourceFile;
     // eslint-disable-next-line no-param-reassign
     program.getSourceFile = (file, languageVersion, onError) => {
       if (isVueFile(file)) {
@@ -107,7 +110,7 @@ const lint = (args = {}) => {
   );
 
   const lintFile = (file) => {
-    const filePath = resolveFromRoot(file);
+    const filePath = path.resolve(projectPath, file);
     const isVue = isVueFile(file);
     patchWriteFile();
     linter.lint(

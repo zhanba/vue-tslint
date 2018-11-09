@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const commander = require('commander');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
@@ -10,7 +12,6 @@ commander
   .option('-p, --project [project]', 'tsconfig.json file')
   .option('--fix', 'fixes linting errors for select rules (this may overwrite linted files)')
   .action((options) => {
-    console.log('options --- ', options);
     const { fix, config, project } = options;
     lint({ fix, config, project });
   });
