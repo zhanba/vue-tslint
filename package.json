@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "cli tool for using tslint in vue sfc file",
   "main": "src/index.js",
+  "bin": "src/bin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
