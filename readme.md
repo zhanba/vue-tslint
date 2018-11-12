@@ -1,6 +1,6 @@
 # vue-tslint
 
-a cli tool to lint and fix error in .vue file, which can't be done with tslint now.
+cli tool to lint and fix error in .vue file, which can't be done with tslint now.
 
 ## install
 
