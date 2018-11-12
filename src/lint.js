@@ -65,16 +65,17 @@ const lint = (args = {}) => {
   };
 
   const program = tslint.Linter.createProgram(projectConfigPath);
-  console.log('program', program);
 
   // patch getSourceFile for *.vue files
   // so that it returns the <script> block only
   // eslint-disable-next-line no-shadow
   const patchProgram = (program) => {
+    // console.log('program------------------------', program);
+    if (!program) return;
     // eslint-disable-next-line prefer-destructuring
     const getSourceFile = program.getSourceFile;
     // eslint-disable-next-line no-param-reassign
-    program.getSourceFile = (file, languageVersion, onError) => {
+    program.getSourceFile = function (file, languageVersion, onError) {
       if (isVueFile(file)) {
         const script = parseTSFromVueFile(file) || '';
         return ts.createSourceFile(file, script, languageVersion, true);
@@ -108,8 +109,16 @@ const lint = (args = {}) => {
       ruleSeverity: 'off',
     }),
   );
+  const rule2 = rules.get('no-unused-variable');
+  rules.set(
+    'no-unused-variable',
+    Object.assign({}, rule2, {
+      ruleSeverity: 'off',
+    }),
+  );
 
   const lintFile = (file) => {
+    console.log('file------', file);
     const filePath = path.resolve(projectPath, file);
     const isVue = isVueFile(file);
     patchWriteFile();
