@@ -28,7 +28,7 @@
     "tslint": "^5.11.0",
     "typescript": "^3.1.6",
     "update-notifier": "^2.5.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.16"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
