@@ -1,1 +1,3 @@
-const {lint} = require('./lint')
+const { lint } = require('./lint');
+
+module.exports = lint;

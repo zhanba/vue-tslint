@@ -16,6 +16,8 @@ const isVueFile = file => /\.vue(\.ts)?$/.test(file);
 const lint = (args = {}) => {
   const configPath = resolveFromRoot(args.config || 'tslint.json');
   const projectPath = resolveFromRoot(args.project || '');
+  const excludePaths = resolveFromRoot(args.exclude || []);
+  const gitignore = resolveFromRoot(args.gitignore || false);
   const projectConfigPath = path.resolve(projectPath, 'tsconfig.json');
 
   const defaultOptions = {
@@ -134,7 +136,11 @@ const lint = (args = {}) => {
 
   const filesPattern = ['./**/*.ts', './**/*.vue', './**/*.tsx'];
 
-  return globby(filesPattern, { cwd: projectPath }).then((files) => {
+  return globby(filesPattern, {
+    cwd: projectPath,
+    gitignore,
+    ignore: excludePaths,
+  }).then((files) => {
     files.forEach(lintFile);
     const result = linter.getResult();
     if (result.output.trim()) {
