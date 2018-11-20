@@ -16,8 +16,8 @@ const isVueFile = file => /\.vue(\.ts)?$/.test(file);
 const lint = (args = {}) => {
   const configPath = resolveFromRoot(args.config || 'tslint.json');
   const projectPath = resolveFromRoot(args.project || '');
-  const excludePaths = resolveFromRoot(args.exclude || []);
-  const gitignore = resolveFromRoot(args.gitignore || false);
+  const excludePaths = (args.exclude || []).map(resolveFromRoot);
+  const gitignore = args.gitignore || false;
   const projectConfigPath = path.resolve(projectPath, 'tsconfig.json');
 
   const defaultOptions = {
