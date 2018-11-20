@@ -24,6 +24,7 @@
   "homepage": "https://github.com/zhanba/vue-tslint#readme",
   "dependencies": {
     "commander": "^2.19.0",
+    "debug": "^4.1.0",
     "globby": "^8.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.1.6",

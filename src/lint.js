@@ -6,6 +6,7 @@ const tslint = require('tslint');
 const ts = require('typescript');
 const globby = require('globby');
 const vueCompiler = require('vue-template-compiler');
+const debug = require('debug')('vue-tslint');
 
 function resolveFromRoot(filePath) {
   return path.join(process.cwd(), filePath);
@@ -14,6 +15,7 @@ function resolveFromRoot(filePath) {
 const isVueFile = file => /\.vue(\.ts)?$/.test(file);
 
 const lint = (args = {}) => {
+  debug('-----------lint args-------------', args);
   const configPath = resolveFromRoot(args.config || 'tslint.json');
   const projectPath = resolveFromRoot(args.project || '');
   const excludePaths = (args.exclude || []).map(resolveFromRoot);
@@ -120,7 +122,7 @@ const lint = (args = {}) => {
   );
 
   const lintFile = (file) => {
-    console.log('file------', file);
+    debug('----------lint file------', file);
     const filePath = path.resolve(projectPath, file);
     const isVue = isVueFile(file);
     patchWriteFile();
@@ -150,6 +152,7 @@ const lint = (args = {}) => {
       const f = new tslint.Formatters.ProseFormatter();
       process.stdout.write(f.format(result.failures, result.fixes));
     } else if (!result.failures.length) {
+      // eslint-disable-next-line no-console
       console.log('No lint errors found.\n');
     }
 
