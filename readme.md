@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/vue-tslint.svg)](https://badge.fury.io/js/vue-tslint)
+[![downloads](https://img.shields.io/npm/dm/vue-tslint.svg)](https://www.npmjs.com/package/vue-tslint)
+
 # vue-tslint
 
 A cli tool that lint your Vue SFC files with TSLint
@@ -25,7 +28,7 @@ Options:
   -h, --help               output usage information
 ```
 
-### example
+### Example
 
 ```bash
 vue-tslint -p vue-project -c tslint.json --fix
