@@ -31,8 +31,10 @@ Options:
 ### Example
 
 ```bash
-vue-tslint -p vue-project -c tslint.json --fix
+vue-tslint -g -p vue-project -c tslint.json --fix
 ```
+
+There is an example project in [here](https://github.com/zhanba/vue-tslint/tree/master/example)
 
 ## Background
 

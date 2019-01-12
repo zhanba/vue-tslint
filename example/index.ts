@@ -1,3 +1,3 @@
 export const a: number = 2;
 
-const b: string = a + "v";
+const b: string = a + 'v';
